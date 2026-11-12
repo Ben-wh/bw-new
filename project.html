@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ls ~/ben/projects</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="favicon.js"></script>
+</head>
+<body class="subpage">
+  <nav>
+    <a href="index.html" class="brand"><span class="prompt">~/</span>ben</a>
+    <div class="links links-static">
+      <a href="projects.html">cd ../projects</a>
+    </div>
+  </nav>
+
+  <main>
+    <article id="project" class="project-page"></article>
+  </main>
+
+  <script src="projects.js"></script>
+  <script src="contact.js"></script>
+  <script>
+    // Render one project from projects.js, chosen by ?id= in the URL.
+    (() => {
+      const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+      const id = new URLSearchParams(location.search).get('id');
+      const p = (window.PROJECTS || []).find((x) => x.id === id);
+      const el = document.getElementById('project');
+
+      if (!p) {
+        el.innerHTML = `
+          <p class="crumb">~/projects/${esc(id || '')}</p>
+          <h1 class="big">Not found<span class="accent">.</span></h1>
+          <p class="muted">bash: ${esc(id || 'project')}: No such file or directory</p>
+          <p><a href="projects.html">← cd ../projects</a></p>`;
+        return;
+      }
+
+      document.title = `ls ~/ben/projects/${p.id}`;
+      el.innerHTML = `
+        <p class="crumb">~/projects/<span class="accent">${esc(p.id)}</span></p>
+        <h1 class="big">${esc(p.title)}<span class="accent">.</span></h1>
+        <div class="project-meta">
+          ${p.year ? `<span class="date">${esc(p.year)}</span>` : ''}
+          ${(p.tags || []).map((t) => `<a class="tag" href="projects.html?tag=${encodeURIComponent(t)}">${esc(t)}</a>`).join('')}
+        </div>
+        ${p.links?.length ? `<p class="project-links">${p.links.map((l) => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join('')}</p>` : ''}
+        ${p.image ? `<img class="project-image" src="${esc(p.image)}" alt="${esc(p.title)} screenshot" />` : ''}
+        <div class="project-body">${p.body || ''}</div>
+        <p class="back"><a href="projects.html">← cd ../projects</a></p>`;
+    })();
+  </script>
+  <script src="footer.js"></script>
+</body>
+</html>

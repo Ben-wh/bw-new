@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ls ~/ben/projects</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="favicon.js"></script>
+</head>
+<body class="subpage">
+  <nav>
+    <a href="index.html" class="brand"><span class="prompt">~/</span>ben</a>
+    <div class="links links-static">
+      <a href="index.html">cd ~</a>
+    </div>
+  </nav>
+
+  <main>
+    <p class="crumb crumb-row"><a class="cd-btn" href="index.html">← cd ~</a> ~/projects</p>
+    <h1 class="big page-title">Projects<span class="accent">.</span></h1>
+
+    <!-- Search + tag filters; cards are generated from projects.js -->
+    <div class="term filter-term">
+      <div class="term-body">
+        <label class="grep">
+          <span class="prompt">$ ls ~/projects | grep</span>
+          <input id="search" type="search" placeholder="search…" autocomplete="off" spellcheck="false" />
+        </label>
+        <div class="tag-filters" id="tag-filters"></div>
+        <p class="result-count" id="result-count" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="project-grid all-projects" id="all-projects"></div>
+  </main>
+
+  <script src="projects.js"></script>
+  <script src="contact.js"></script>
+  <script>
+    (() => {
+      const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+      const all = window.PROJECTS || [];
+      const grid = document.getElementById('all-projects');
+      const search = document.getElementById('search');
+      const tagBox = document.getElementById('tag-filters');
+      const count = document.getElementById('result-count');
+
+      // Every tag used by any project, most common first.
+      const tagCounts = {};
+      all.forEach((p) => (p.tags || []).forEach((t) => (tagCounts[t] = (tagCounts[t] || 0) + 1)));
+      const tags = Object.keys(tagCounts).sort((a, b) => tagCounts[b] - tagCounts[a] || a.localeCompare(b));
+
+      // Start from ?tag= / ?q= in the URL, so tags elsewhere can link here.
+      const params = new URLSearchParams(location.search);
+      let activeTag = tags.includes(params.get('tag')) ? params.get('tag') : null;
+      search.value = params.get('q') || '';
+
+      tagBox.innerHTML = ['all', ...tags].map((t) =>
+        `<button type="button" class="tag-btn" data-tag="${esc(t)}">${t === 'all' ? '--all' : esc(t)}</button>`).join('');
+
+      const card = (p) => `
+        <a class="project-card" href="project.html?id=${encodeURIComponent(p.id)}">
+          <span class="crumb">~/projects/${esc(p.id)}</span>
+          <h3>${esc(p.title)}</h3>
+          <p>${esc(p.summary)}</p>
+          <span class="tags">${(p.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</span>
+          <span class="open">${p.year ? `<span class="year">${esc(p.year)}</span>` : ''}open <span class="accent">→</span></span>
+        </a>`;
+
+      function render() {
+        const q = search.value.trim().toLowerCase();
+        const shown = all.filter((p) =>
+          (!activeTag || (p.tags || []).includes(activeTag)) &&
+          (!q || [p.title, p.summary, p.id, ...(p.tags || [])].join(' ').toLowerCase().includes(q)));
+
+        tagBox.querySelectorAll('.tag-btn').forEach((b) =>
+          b.classList.toggle('active', b.dataset.tag === (activeTag || 'all')));
+
+        count.textContent = shown.length
+          ? `${shown.length} of ${all.length} project${all.length === 1 ? '' : 's'}`
+          : `grep: no projects match${q ? ` "${q}"` : ''}${activeTag ? ` in ${activeTag}` : ''}`;
+        count.classList.toggle('empty', !shown.length);
+        grid.innerHTML = shown.map(card).join('');
+
+        // keep the URL in sync so filtered views can be shared
+        const url = new URL(location);
+        activeTag ? url.searchParams.set('tag', activeTag) : url.searchParams.delete('tag');
+        q ? url.searchParams.set('q', q) : url.searchParams.delete('q');
+        history.replaceState(null, '', url);
+      }
+
+      tagBox.addEventListener('click', (e) => {
+        const b = e.target.closest('.tag-btn');
+        if (!b) return;
+        activeTag = b.dataset.tag === 'all' || b.dataset.tag === activeTag ? null : b.dataset.tag;
+        render();
+      });
+      search.addEventListener('input', render);
+
+      render();
+      requestAnimationFrame(() => grid.classList.add('in'));   // cards fade in on first load
+    })();
+  </script>
+  <script src="footer.js"></script>
+</body>
+</html>

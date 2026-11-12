@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ls ~/ben</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="favicon.js"></script>
+</head>
+<body>
+  <canvas id="tree" aria-hidden="true"></canvas>
+
+  <nav>
+    <a href="#" class="brand"><span class="prompt">~/</span>ben</a>
+    <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="links" id="nav-links">
+      <a href="#about">./about</a>
+      <a href="#experience">./experience</a>
+      <a href="#education">./education</a>
+      <a href="#projects">./projects</a>
+      <a href="#skills">./skills</a>
+      <a href="#contact">./contact</a>
+    </div>
+  </nav>
+
+  <main>
+    <header>
+      <h1 aria-label="Ben Whitrow"><span class="prompt">$</span> <span id="typed">Ben Whitrow</span><span class="cursor">█</span><span id="untyped"></span></h1>
+      <p id="subtext">Cyber Security Degree Apprentice</p>
+    </header>
+
+    <section id="about">
+      <h2 class="big">About me<span class="accent">.</span></h2>
+      <p>My name is Ben Whitrow, I'm a Cyber Security Degree Apprentice currently located in:</p>
+
+      <div class="bristol">
+        <!-- Wireframe Clifton Suspension Bridge; hangers are added by script.js -->
+        <svg class="bridge" viewBox="0 0 520 160" aria-hidden="true" fill="none">
+          <!-- gorge -->
+          <path class="draw dim" pathLength="1" d="M0 122 H66 L84 160" />
+          <path class="draw dim" pathLength="1" d="M520 122 H454 L436 160" />
+          <path class="draw dim dashed" d="M120 154 H400" />
+          <!-- deck -->
+          <path class="draw" pathLength="1" d="M66 120 H454" />
+          <path class="draw dim" pathLength="1" d="M66 126 H454" />
+          <!-- towers, each with its arch -->
+          <path class="draw" pathLength="1" d="M78 122 L82 42 H98 L102 122" />
+          <path class="draw" pathLength="1" d="M84 120 V80 A6 6 0 0 1 96 80 V120" />
+          <path class="draw" pathLength="1" d="M418 122 L422 42 H438 L442 122" />
+          <path class="draw" pathLength="1" d="M424 120 V80 A6 6 0 0 1 436 80 V120" />
+          <!-- main chains -->
+          <path class="draw chain" pathLength="1" d="M90 42 Q260 188 430 42" />
+          <path class="draw chain" pathLength="1" d="M0 104 Q52 86 90 42" />
+          <path class="draw chain" pathLength="1" d="M520 104 Q468 86 430 42" />
+          <g class="hangers"></g>
+          <!-- node markers on tower tops -->
+          <circle class="node" cx="90" cy="42" r="2.5" />
+          <circle class="node" cx="430" cy="42" r="2.5" />
+        </svg>
+        <span class="place">Bristol, UK</span>
+      </div>
+
+      <p>I enjoy working with technology, cyber security and programming. In my free time I like playing electric guitar, video games, and listening to music.</p>
+    </section>
+
+    <section id="experience">
+      <h2 class="big">Experience<span class="accent">.</span></h2>
+      <h3 class="sub">Work<span class="accent">:</span></h3>
+
+      <ol class="timeline">
+        <li class="job">
+          <div class="job-text">
+            <h4>Leonardo</h4>
+            <p class="role">Cyber Degree Apprentice</p>
+            <p class="date">2025 – <span class="accent">current</span></p>
+          </div>
+          <img class="logo" src="images/leonardo.png" alt="Leonardo logo" width="64" height="64" />
+        </li>
+        <li class="job">
+          <div class="job-text">
+            <h4>Prosperity Care and Wellbeing</h4>
+            <p class="role">Central Support and IT Assistant</p>
+            <p class="date">2024 – 2025</p>
+          </div>
+          <img class="logo" src="images/prosperity.png" alt="Prosperity Care and Wellbeing logo" width="64" height="64" />
+        </li>
+        <li class="job">
+          <div class="job-text">
+            <h4>Roke</h4>
+            <p class="role">T-Level Work Experience</p>
+            <p class="date">2023</p>
+          </div>
+          <img class="logo" src="images/roke.png" alt="Roke logo" width="64" height="64" />
+        </li>
+        <li class="job">
+          <div class="job-text">
+            <h4>Bytes Digital</h4>
+            <p class="role">T-Level Work Experience</p>
+            <p class="date">2023</p>
+          </div>
+          <img class="logo" src="images/bytes.png" alt="Bytes Digital logo" width="64" height="64" />
+        </li>
+      </ol>
+    </section>
+
+    <section id="education">
+      <h2 class="big">Education<span class="accent">.</span></h2>
+
+      <ol class="timeline">
+        <li class="job">
+          <div class="job-text">
+            <h4>University of Gloucestershire</h4>
+            <p class="role">Cyber Security Technical Professional Degree</p>
+            <p class="date">2025 – <span class="accent">current</span></p>
+          </div>
+          <img class="logo" src="images/uog.png" alt="University of Gloucestershire logo" width="64" height="64" />
+        </li>
+        <li class="job">
+          <div class="job-text">
+            <h4>Gloucestershire College</h4>
+            <p class="role">Digital Infrastructure T-Level (Distinction*)</p>
+            <p class="date">2023 – 2025</p>
+          </div>
+          <img class="logo" src="images/gloscol.png" alt="Gloucestershire College logo" width="64" height="64" />
+        </li>
+        <li class="job">
+          <div class="job-text">
+            <h4>Kings of Wessex Academy</h4>
+            <p class="role">10 GCSEs (Grades 6+)</p>
+            <p class="date">2021 – 2023</p>
+          </div>
+          <img class="logo" src="images/kings.png" alt="Kings of Wessex Academy logo" width="64" height="64" />
+        </li>
+      </ol>
+    </section>
+
+    <section id="projects">
+      <h2 class="big">Projects<span class="accent">.</span></h2>
+      <!-- Cards are generated from projects.js -->
+      <div class="project-grid" id="project-grid"></div>
+      <a class="see-all" href="projects.html">$ ls ./projects --all <span class="accent">→</span></a>
+    </section>
+
+    <section id="skills">
+      <h2 class="big">Skills<span class="accent">.</span></h2>
+      <!-- Terminal contents are generated from skills.js -->
+      <div class="term" id="skills-term">
+        <div class="term-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="term-title">ben@portfolio: ~</span>
+        </div>
+        <div class="term-body">
+          <p class="term-line"><span class="prompt">$</span> <span class="term-cmd"></span><span class="cursor">█</span></p>
+          <div class="term-output"></div>
+          <p class="term-status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="big">Contact<span class="accent">.</span></h2>
+      <div class="term" id="contact-term">
+        <div class="term-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="term-title">ssh — contact@ben</span>
+        </div>
+        <div class="term-body">
+          <div class="ssh-log" aria-live="polite"></div>
+          <form class="ssh-form" novalidate>
+            <label><span class="prompt">name:</span><input name="name" autocomplete="name" required /></label>
+            <label><span class="prompt">email:</span><input name="email" type="email" autocomplete="email" required /></label>
+            <label class="msg"><span class="prompt">message:</span><textarea name="message" rows="4" required></textarea></label>
+            <div class="ssh-actions">
+              <button type="submit">./send --encrypt</button>
+              <span class="ssh-error"></span>
+            </div>
+          </form>
+          <div class="ssh-send" aria-live="polite"></div>
+          <p class="ssh-links"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="projects.js"></script>
+  <script src="skills.js"></script>
+  <script src="contact.js"></script>
+  <script src="script.js"></script>
+  <script src="footer.js"></script>
+</body>
+</html>
