@@ -1,9 +1,28 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ls ~/ben/projects</title>
+  <title>ls ~/ben/projects · Ben Whitrow</title>
+  <meta name="description" content="A project by Ben Whitrow, Cyber Security Degree Apprentice." />
+  <link rel="canonical" href="https://benwhitrow.co.uk/projects.html" />
+  <meta name="theme-color" content="#0d1117" />
+  <meta name="author" content="Ben Whitrow" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Ben Whitrow" />
+  <meta property="og:title" content="ls ~/ben/projects · Ben Whitrow" />
+  <meta property="og:description" content="A project by Ben Whitrow, Cyber Security Degree Apprentice." />
+  <meta property="og:url" content="https://benwhitrow.co.uk/projects.html" />
+  <meta property="og:image" content="https://benwhitrow.co.uk/images/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ls ~/ben/projects · Ben Whitrow" />
+  <meta name="twitter:description" content="A project by Ben Whitrow, Cyber Security Degree Apprentice." />
+  <meta name="twitter:image" content="https://benwhitrow.co.uk/images/og.png" />
   <link rel="stylesheet" href="styles.css" />
   <script src="favicon.js"></script>
 </head>
@@ -30,6 +49,10 @@
       const el = document.getElementById('project');
 
       if (!p) {
+        // Don't let search engines index the "not found" state.
+        const robots = document.createElement('meta');
+        robots.name = 'robots'; robots.content = 'noindex';
+        document.head.appendChild(robots);
         el.innerHTML = `
           <p class="crumb">~/projects/${esc(id || '')}</p>
           <h1 class="big">Not found<span class="accent">.</span></h1>
@@ -38,7 +61,18 @@
         return;
       }
 
-      document.title = `ls ~/ben/projects/${p.id}`;
+      document.title = `ls ~/ben/projects/${p.id} · ${p.title} — Ben Whitrow`;
+      // Per-project SEO/social tags (Google renders this JavaScript when indexing).
+      const setMeta = (sel, attr, val) => { const m = document.querySelector(sel); if (m) m.setAttribute(attr, val); };
+      const url = `https://benwhitrow.co.uk/project.html?id=${encodeURIComponent(p.id)}`;
+      const desc = `${p.summary} A project by Ben Whitrow.`;
+      setMeta('meta[name="description"]', 'content', desc);
+      setMeta('link[rel="canonical"]', 'href', url);
+      setMeta('meta[property="og:title"]', 'content', document.title);
+      setMeta('meta[name="twitter:title"]', 'content', document.title);
+      setMeta('meta[property="og:description"]', 'content', desc);
+      setMeta('meta[name="twitter:description"]', 'content', desc);
+      setMeta('meta[property="og:url"]', 'content', url);
       el.innerHTML = `
         <p class="crumb">~/projects/<span class="accent">${esc(p.id)}</span></p>
         <h1 class="big">${esc(p.title)}<span class="accent">.</span></h1>
