@@ -3,6 +3,7 @@
 //
 //   email         where messages go (also shown as a link)
 //   links         shown under the form; add or remove as you like
+//   coffee        optional Buy Me a Coffee link, shown as a button in the footer
 //   formEndpoint  optional. Leave '' and "send" opens the visitor's email app
 //                 with the message filled in. To have messages delivered
 //                 straight to your inbox instead, create a free form at
@@ -17,4 +18,5 @@ window.CONTACT = {
     { label: 'linkedin', url: 'https://www.linkedin.com/in/ben-whitrow' },
   ],
   formEndpoint: 'https://formspree.io/f/mzerzrbv',
+  coffee: 'https://buymeacoffee.com/benwhitrow',   // footer "buy me a coffee" button; '' to hide
 };

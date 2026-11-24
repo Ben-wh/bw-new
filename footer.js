@@ -32,6 +32,7 @@
           const ext = l.url.startsWith('http') ? ' target="_blank" rel="noopener"' : '';
           return `<a href="${esc(l.url)}"${ext} aria-label="${esc(l.label)}" title="${esc(l.label)}"${icon ? ' class="foot-icon"' : ''}>${icon || esc(l.label)}</a>`;
         }).join('')}
+        ${cfg.coffee ? `<a href="${esc(cfg.coffee)}" target="_blank" rel="noopener" class="btn foot-coffee" aria-label="Buy me a coffee">./buy-me-a-coffee <span aria-hidden="true">☕</span></a>` : ''}
         <a href="${top}" class="foot-top">cd ~ ↑</a>
       </p>
     </div>
