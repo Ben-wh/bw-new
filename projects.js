@@ -109,7 +109,7 @@ window.PROJECTS = [
     featured: true,
     body: `
       <p>A website for my partner and her technical theatre portfolio. Simple HTML, CSS, JS stack.</p>
-      <a class="btn" target="_blank" href="https://rhutchings.co.uk">view the site</a>
+      <a class="btn" target="_blank" href="https://remee.co.uk">view the site</a>
       
       <hr />
       
@@ -123,6 +123,18 @@ window.PROJECTS = [
       <p>I was pretty happy with the result, mostly due to the fact I didn't just vibecode the whole thing.
       My favourite feature was probably the mixing desk slider which shuffled through her experience page. Go
       check out the site and tell me what you think, or what needs changing :)
+
+      <hr />
+
+      <h3>Website:</h3>
+      <div class="spacer"></div>
+      <img src='images/remee.co.uk1.png' alt="Screenshot of website">
+      <div class="spacer sm"></div>
+      <img src='images/remee.co.uk2.png' alt="Screenshot of website">
+      <div class="spacer sm"></div>
+      <img src='images/remee.co.uk3.png' alt="Screenshot of website">
+      <div class="spacer sm"></div>
+      <img src='images/remee.co.uk4.png' alt="Screenshot of website">
     `,
   },
   {
