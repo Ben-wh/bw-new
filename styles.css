@@ -257,6 +257,23 @@ body.subpage { min-height: 100vh; min-height: 100svh; display: flex; flex-direct
   border: 0; height: 1px; margin: 32px 0;
   background: repeating-linear-gradient(90deg, var(--border) 0 6px, transparent 6px 12px);
 }
+
+/* Images inside project write-ups (see projects.js for usage) */
+.project-body img { max-width: 100%; height: auto; }
+.project-body .img { margin: 24px 0; }
+.project-body .img img {
+  display: block; width: 100%;
+  border-radius: 10px; border: 1px solid var(--border);
+}
+.project-body .img figcaption { margin-top: 8px; font-size: 0.85rem; color: var(--muted); }
+.project-body .img figcaption::before { content: "// "; color: var(--green); opacity: 0.7; }
+.project-body .img.sm { max-width: 60%; margin-left: auto; margin-right: auto; }
+.project-body .img.sm figcaption { text-align: center; }
+/* two (or more) images side by side; stacks on phones */
+.project-body .img-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 24px 0; }
+.project-body .img-row .img { margin: 0; }
+@media (max-width: 600px) { .project-body .img.sm { max-width: 100%; } }
+
 .project-page .back { margin-top: 48px; }
 .project-page .back a { text-decoration: none; }
 .project-page .back a:hover { text-decoration: underline; }

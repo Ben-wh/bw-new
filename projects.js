@@ -26,6 +26,13 @@
 //               <a class="btn solid" href="https://…">live demo</a>     filled
 //               <a class="btn subtle" href="https://…">read docs</a>    grey
 //             Wrap several in <div class="btn-row">…</div> to line them up.
+//             Images (rounded, bordered, full width; caption is optional):
+//               <figure class="img">
+//                 <img src="/images/pic.png" alt="what it shows" />
+//                 <figcaption>a short caption</figcaption>
+//               </figure>
+//             Add "sm" for a smaller, centred image:  <figure class="img sm">
+//             Wrap several in <div class="img-row">…</div> to put them side by side.
 // ─────────────────────────────────────────────────────────────────────────────
 
 window.PROJECTS = [
@@ -125,6 +132,11 @@ window.PROJECTS = [
     year: '2026 > current',
     tags: ['Programming', 'Python', 'Web', 'Docker'],
     featured: true,
-    body: `<p>Nothing here yet. Mainly because the project isn't finished...</p>`,
+    body: `
+    <p>Nothing here yet. Mainly because the project isn't finished...</p>
+    <figure class="img">
+      <img src="/images/lithium-deploy.png" alt="Lithium deployment" />
+    </figure>
+    `,
   },
 ];
